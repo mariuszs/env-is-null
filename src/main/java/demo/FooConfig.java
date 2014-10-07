@@ -16,7 +16,7 @@ public class FooConfig {
 
     @Bean
     public Foo foo() {
-        String message = "not working";
+        String message = "Environment was not injected!";
         if (environment != null) {
             message = environment.getProperty("foo.message");
         }
@@ -28,10 +28,9 @@ public class FooConfig {
         return new MyAutowireCandidateResolver();
     }
 
+    // FIXME: After commenting this bean all is working!
     @Bean
     public AutowireCandidateResolverConfigurer autowireCandidateResolverConfigurer() {
-        AutowireCandidateResolverConfigurer autowireCandidateResolverConfigurer = new AutowireCandidateResolverConfigurer();
-        autowireCandidateResolverConfigurer.setAutowireCandidateResolver(autowireCandidateResolver());
-        return autowireCandidateResolverConfigurer;
+        return new AutowireCandidateResolverConfigurer(autowireCandidateResolver());
     }
 }
