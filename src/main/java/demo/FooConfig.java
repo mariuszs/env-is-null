@@ -24,13 +24,13 @@ public class FooConfig {
     }
 
     @Bean
-    public AutowireCandidateResolver autowireCandidateResolver() {
+    public static AutowireCandidateResolver autowireCandidateResolver() {
         return new MyAutowireCandidateResolver();
     }
 
     // FIXME: After commenting this bean all is working!
     @Bean
-    public AutowireCandidateResolverConfigurer autowireCandidateResolverConfigurer() {
+    public static AutowireCandidateResolverConfigurer autowireCandidateResolverConfigurer() {
         return new AutowireCandidateResolverConfigurer(autowireCandidateResolver());
     }
 }
